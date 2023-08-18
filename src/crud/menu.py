@@ -6,7 +6,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import delete, func, insert, select, update
 from src.db.database import get_db
 from src.db.models import Menu
-from src.schemas.menu import MenuBase, MenuGet
+from src.schemas.menu import MenuBase
 
 
 class MenuCrud:
@@ -27,7 +27,7 @@ class MenuCrud:
     async def get_menu(self, menu_id: UUID) -> Menu:
         stmt = select(Menu).where(Menu.id == menu_id)
         result = await self.session.execute(stmt)
-        return result.scalar_one()
+        return result.scalar()
 
     async def update_menu(self, menu_id: UUID, updated_menu: MenuBase) -> Menu:
         stmt = update(Menu).where(Menu.id == menu_id).values(**updated_menu.model_dump()).returning(Menu)

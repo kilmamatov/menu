@@ -15,11 +15,7 @@ class ResponseMenu(MenuBase):
     id: UUID
 
 
-class MenuGet(ResponseMenu):
-    pass
-
-
-ResponseAllMenu = RootModel[list[ResponseMenu]]
+# ResponseAllMenu = RootModel[list[ResponseMenu]]
 
 
 
